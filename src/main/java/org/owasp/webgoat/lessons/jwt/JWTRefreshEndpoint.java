@@ -125,6 +125,7 @@ public class JWTRefreshEndpoint extends AssignmentEndpoint {
       log.info("Invalid JWT token.");
       log.trace("Invalid JWT token trace: {}", e);
     }
+    }
 
   @PostMapping("/JWT/refresh/newToken")
   @ResponseBody
