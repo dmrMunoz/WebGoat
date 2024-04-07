@@ -104,7 +104,7 @@ public class JWTRefreshEndpoint extends AssignmentEndpoint {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
     try {
-      Jwt jwt = Jwts.parser().setSigningKey(JWT_PASSWORD).parse(token.replace("Bearer ", ""));
+      Jwt jwt = Jwts.parser().setSigningKey(JWT_PASSWORD).parseClaimsJws(token.replace("Bearer ", ""));
       Claims claims = (Claims) jwt.getBody();
       String user = (String) claims.get("user");
       if ("Tom".equals(user)) {
@@ -118,8 +118,8 @@ public class JWTRefreshEndpoint extends AssignmentEndpoint {
       return ok(failed(this).output(e.getMessage()).build());
     } catch (JwtException e) {
       return ok(failed(this).feedback("jwt-invalid-token").build());
-    }
-  }
+    } 
+}
 
   @PostMapping("/JWT/refresh/newToken")
   @ResponseBody
