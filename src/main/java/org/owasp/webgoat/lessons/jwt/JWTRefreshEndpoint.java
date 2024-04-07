@@ -118,14 +118,8 @@ public class JWTRefreshEndpoint extends AssignmentEndpoint {
       return ok(failed(this).output(e.getMessage()).build());
     } catch (JwtException e) {
       return ok(failed(this).feedback("jwt-invalid-token").build());
-    } catch (SignatureException e) {
-      log.info("Invalid JWT signature.");
-      log.trace("Invalid JWT signature trace: {}", e);
-    } catch (MalformedJwtException e) {
-      log.info("Invalid JWT token.");
-      log.trace("Invalid JWT token trace: {}", e);
-    }
-    }
+    } 
+}
 
   @PostMapping("/JWT/refresh/newToken")
   @ResponseBody
